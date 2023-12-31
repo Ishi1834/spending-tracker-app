@@ -28,4 +28,9 @@ module.exports = {
     "react-native/no-raw-text": 2,
     "react-native/no-single-element-style-arrays": 2,
   },
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
 }
