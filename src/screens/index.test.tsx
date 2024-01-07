@@ -1,9 +1,9 @@
 import { render, screen } from "@testing-library/react-native"
-import App from "./App"
+import Main from "./"
 
-describe("<App />", () => {
+describe("<Main />", () => {
   it("renders correctly", () => {
-    render(<App />)
+    render(<Main />)
 
     expect(
       screen.getByText("Open up App.tsx to start working on your app!"),

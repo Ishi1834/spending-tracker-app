@@ -1,24 +1,14 @@
 import Constants from "expo-constants"
-import { StatusBar } from "expo-status-bar"
-import { StyleSheet, Text, View } from "react-native"
+import { PaperProvider } from "react-native-paper"
 import Storybook from "./.storybook"
+import Main from "./src/screens"
 
-function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <PaperProvider>
+      <Main />
+    </PaperProvider>
   )
 }
 
 export default Constants.expoConfig?.extra?.storybookEnabled ? Storybook : App
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-})
