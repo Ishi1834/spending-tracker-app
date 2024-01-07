@@ -14,7 +14,13 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["@typescript-eslint", "prettier", "react", "react-native"],
+  plugins: [
+    "@typescript-eslint",
+    "prettier",
+    "react",
+    "react-native",
+    "import",
+  ],
   rules: {
     indent: ["error", 2],
     "linebreak-style": ["error", "unix"],
@@ -27,6 +33,23 @@ module.exports = {
     "react-native/no-inline-styles": 2,
     "react-native/no-raw-text": 2,
     "react-native/no-single-element-style-arrays": 2,
+    "import/order": [
+      "error",
+      {
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+        ],
+        alphabetize: {
+          order: "asc",
+          caseInsensitive: true,
+        },
+      },
+    ],
   },
   settings: {
     react: {

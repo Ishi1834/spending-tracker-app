@@ -1,6 +1,6 @@
+import { Meta } from "@storybook/react-native"
 import { View } from "react-native"
 import { MyButton } from "./Button"
-import { Meta } from "@storybook/react-native"
 
 const MyButtonMeta: Meta = {
   title: "MyButton",
