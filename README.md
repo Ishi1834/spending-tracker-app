@@ -16,6 +16,12 @@ To get started with this project, follow these steps:
 
 Once the development server is running, you can use the Expo app on your mobile device to scan the QR code and open the app. Alternatively, you can use an Android or iOS emulator to run the app.
 
+## Storybook
+
+This project has been set up with Storybook, a development environment for UI components. To start Storybook, run the following command:
+
+`npm run storybook:start`
+
 ## Features
 
 - Track your expenses and income.
