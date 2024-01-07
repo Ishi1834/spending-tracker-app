@@ -28,9 +28,10 @@ module.exports = {
     semi: ["error", "never"],
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
     "prettier/prettier": "error",
     "react-native/no-unused-styles": 2,
-    "react-native/no-inline-styles": 2,
+    "react-native/no-inline-styles": 1,
     "react-native/no-raw-text": 2,
     "react-native/no-single-element-style-arrays": 2,
     "import/order": [
