@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 
-const Settings = () => {
+export const SettingsScreen = () => {
   return (
     <View style={styles.container}>
       <Text>Settings screen</Text>
@@ -9,8 +9,6 @@ const Settings = () => {
     </View>
   )
 }
-
-export default Settings
 
 const styles = StyleSheet.create({
   container: {

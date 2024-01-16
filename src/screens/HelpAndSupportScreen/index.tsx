@@ -1,16 +1,14 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 
-const Profile = () => {
+export const HelpAndSupportScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Profile screen</Text>
+      <Text>Help & Support screen</Text>
       <StatusBar style="auto" />
     </View>
   )
 }
-
-export default Profile
 
 const styles = StyleSheet.create({
   container: {

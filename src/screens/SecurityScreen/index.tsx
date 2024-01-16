@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 
-const Security = () => {
+export const SecurityScreen = () => {
   return (
     <View style={styles.container}>
       <Text>Security screen</Text>
@@ -9,8 +9,6 @@ const Security = () => {
     </View>
   )
 }
-
-export default Security
 
 const styles = StyleSheet.create({
   container: {

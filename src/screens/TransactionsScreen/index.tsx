@@ -1,16 +1,14 @@
 import { StatusBar } from "expo-status-bar"
 import { StyleSheet, Text, View } from "react-native"
 
-const Home = () => {
+export const TransactionsScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Home screen</Text>
+      <Text>Transactions screen</Text>
       <StatusBar style="auto" />
     </View>
   )
 }
-
-export default Home
 
 const styles = StyleSheet.create({
   container: {
