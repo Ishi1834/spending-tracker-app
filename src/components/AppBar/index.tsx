@@ -1,36 +1,51 @@
 import { Appbar as RNPAppbar } from "react-native-paper"
 
-interface StackScreenProps {
+type StackScreenProps = {
   screenMode: "Stack"
   title: string
-  backAction: () => void
+  handleBackAction: () => void
 }
 
-interface DrawerScreenProps {
+type DrawerScreenProps = {
   screenMode: "Drawer"
   title: string
-  menuAction: () => void
+  handleMenuAction: () => void
 }
 
-interface TabScreenProps {
+type TabScreenProps = {
   screenMode: "Tab"
   title: string
-  addAction: () => void
+  handleAddAction: () => void
+  handleMenuAction: () => void
 }
 
 export type AppBarProps = StackScreenProps | DrawerScreenProps | TabScreenProps
 
-const Appbar = ({ screenMode, title }: AppBarProps) => {
+const Appbar = ({ screenMode, title, ...props }: AppBarProps) => {
   return (
     <RNPAppbar.Header mode="center-aligned">
       {screenMode === "Stack" ? (
-        <RNPAppbar.BackAction onPress={() => {}} />
+        <RNPAppbar.BackAction
+          onPress={
+            "handleBackAction" in props ? props.handleBackAction : undefined
+          }
+        />
       ) : (
-        <RNPAppbar.Action icon="menu" onPress={() => {}} />
+        <RNPAppbar.Action
+          icon="menu"
+          onPress={
+            "handleMenuAction" in props ? props.handleMenuAction : undefined
+          }
+        />
       )}
       <RNPAppbar.Content title={title} />
       {screenMode === "Tab" && (
-        <RNPAppbar.Action icon="plus" onPress={() => {}} />
+        <RNPAppbar.Action
+          icon="plus"
+          onPress={
+            "handleAddAction" in props ? props.handleAddAction : undefined
+          }
+        />
       )}
     </RNPAppbar.Header>
   )
