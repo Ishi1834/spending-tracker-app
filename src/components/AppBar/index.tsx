@@ -21,7 +21,7 @@ type TabScreenProps = {
 
 export type AppBarProps = StackScreenProps | DrawerScreenProps | TabScreenProps
 
-const Appbar = ({ screenMode, title, ...props }: AppBarProps) => {
+export const Appbar = ({ screenMode, title, ...props }: AppBarProps) => {
   return (
     <RNPAppbar.Header mode="center-aligned">
       {screenMode === "Stack" ? (
@@ -50,5 +50,3 @@ const Appbar = ({ screenMode, title, ...props }: AppBarProps) => {
     </RNPAppbar.Header>
   )
 }
-
-export default Appbar

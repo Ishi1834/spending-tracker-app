@@ -6,7 +6,7 @@ import {
   useNavigation,
 } from "@react-navigation/native"
 import { BottomNavigation, Icon } from "react-native-paper"
-import Appbar from "../../components/AppBar"
+import { Appbar } from "../../components/AppBar"
 import { GoalsScreen } from "../GoalsScreen"
 import { InsightsScreen } from "../InsightsScreen"
 import { TransactionsScreen } from "../TransactionsScreen"

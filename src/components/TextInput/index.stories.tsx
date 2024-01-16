@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import { Meta } from "@storybook/react-native"
 import { View } from "react-native"
-import TextInput from "./"
+import { TextInput } from "./"
 
 const meta = {
   title: "TextInput",

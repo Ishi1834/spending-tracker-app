@@ -1,7 +1,6 @@
-/* eslint-disable react-native/no-inline-styles */
 import { Meta } from "@storybook/react-native"
 import { View } from "react-native"
-import Appbar from "./"
+import { Appbar } from "./"
 
 const meta = {
   title: "Appbar",
