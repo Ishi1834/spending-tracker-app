@@ -6,14 +6,14 @@ import {
   useNavigation,
 } from "@react-navigation/native"
 import { BottomNavigation, Icon } from "react-native-paper"
-import { Appbar } from "../../components/AppBar"
-import { GoalsScreen } from "../GoalsScreen"
-import { InsightsScreen } from "../InsightsScreen"
-import { TransactionsScreen } from "../TransactionsScreen"
+import { Appbar } from "../../../components/AppBar"
+import { GoalsScreen } from "../../GoalsScreen"
+import { InsightsScreen } from "../../InsightsScreen"
+import { TransactionsScreen } from "../../TransactionsScreen"
 
 const Tab = createBottomTabNavigator()
 
-export const BottomTab = () => {
+export const BottomTabNavigator = () => {
   const navigation = useNavigation<DrawerNavigationProp<ParamListBase>>()
 
   return (
@@ -26,7 +26,7 @@ export const BottomTab = () => {
               <Appbar
                 screenMode="Tab"
                 title={route.name}
-                handleAddAction={() => console.log("add clicked")}
+                handleAddAction={() => navigation.navigate("AddATransaction")}
                 handleMenuAction={() => navigation.toggleDrawer()}
               />
             )

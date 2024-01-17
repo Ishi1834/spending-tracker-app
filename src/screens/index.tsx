@@ -1,36 +1,32 @@
-import { createDrawerNavigator } from "@react-navigation/drawer"
+import { createStackNavigator } from "@react-navigation/stack"
 import { Appbar } from "../components/AppBar"
-import { BottomTab } from "./BottomTab"
-import { HelpAndSupportScreen } from "./HelpAndSupportScreen"
-import { ProfileScreen } from "./ProfileScreen"
-import { SecurityScreen } from "./SecurityScreen"
-import { SettingsScreen } from "./SettingsScreen"
+import { AddTransactionScreen } from "./AddTransactionScreen"
+import { DrawerNavigator } from "./components/DrawerNavigator"
 
-const Drawer = createDrawerNavigator()
+const Stack = createStackNavigator()
 
 const Main = () => {
   return (
-    <Drawer.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        header: ({ navigation, route }) => {
-          if (route.name !== "Home")
-            return (
-              <Appbar
-                screenMode="Drawer"
-                title={route.name}
-                handleMenuAction={() => navigation.toggleDrawer()}
-              />
-            )
-        },
-      }}
-    >
-      <Drawer.Screen name="Home" component={BottomTab} />
-      <Drawer.Screen name="Profile" component={ProfileScreen} />
-      <Drawer.Screen name="Settings" component={SettingsScreen} />
-      <Drawer.Screen name="Security" component={SecurityScreen} />
-      <Drawer.Screen name="Help & Support" component={HelpAndSupportScreen} />
-    </Drawer.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="DrawerScreens"
+        options={{ headerShown: false }}
+        component={DrawerNavigator}
+      />
+      <Stack.Screen
+        name="AddATransaction"
+        options={{
+          header: ({ navigation }) => (
+            <Appbar
+              screenMode="Stack"
+              title="Add a transaction"
+              handleBackAction={() => navigation.goBack()}
+            />
+          ),
+        }}
+        component={AddTransactionScreen}
+      />
+    </Stack.Navigator>
   )
 }
 
