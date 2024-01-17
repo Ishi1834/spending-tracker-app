@@ -1,5 +1,5 @@
 /* eslint-disable react-native/no-inline-styles */
-import { Meta } from "@storybook/react-native"
+import { Meta, StoryObj } from "@storybook/react-native"
 import { View } from "react-native"
 import { TextInput } from "./"
 
@@ -23,14 +23,16 @@ const meta = {
 
 export default meta
 
-export const Default = {
+type Story = StoryObj<typeof TextInput>
+
+export const Default: Story = {
   args: {
     label: "Label",
     placeholder: "Placeholder",
   },
 }
 
-export const Disabled = {
+export const Disabled: Story = {
   args: {
     disabled: true,
     placeholder: "Disabled input",

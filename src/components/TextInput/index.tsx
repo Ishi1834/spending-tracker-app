@@ -1,4 +1,3 @@
-import React from "react"
 import { TextInput as RNPTextInput } from "react-native-paper"
 
 export type TextInputProps = React.ComponentProps<typeof RNPTextInput>
