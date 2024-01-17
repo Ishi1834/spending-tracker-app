@@ -21,6 +21,7 @@
     "@react-navigation/bottom-tabs": "^6.5.11",
     "@react-navigation/drawer": "^6.6.6",
     "@react-navigation/native": "^6.1.9",
+    "@react-navigation/stack": "^6.3.20",
     "deepmerge": "^4.3.1",
     "expo": "^49.0.21",
     "expo-status-bar": "~1.6.0",
