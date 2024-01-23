@@ -1,11 +1,17 @@
 import { createStackNavigator } from "@react-navigation/stack"
+import { useEffect } from "react"
 import { Appbar } from "../components/AppBar"
+import { setupDatabaseTables } from "../utils/database"
 import { AddTransactionScreen } from "./AddTransactionScreen"
 import { DrawerNavigator } from "./components/DrawerNavigator"
 
 const Stack = createStackNavigator()
 
 const Main = () => {
+  useEffect(() => {
+    setupDatabaseTables()
+  }, [])
+
   return (
     <Stack.Navigator>
       <Stack.Screen
