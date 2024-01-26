@@ -1,4 +1,4 @@
-import { Appbar as RNPAppbar } from "react-native-paper"
+import { Appbar as RNPAppbar, useTheme } from "react-native-paper"
 
 type StackScreenProps = {
   screenMode: "Stack"
@@ -22,8 +22,12 @@ type TabScreenProps = {
 export type AppBarProps = StackScreenProps | DrawerScreenProps | TabScreenProps
 
 export const Appbar = ({ screenMode, title, ...props }: AppBarProps) => {
+  const theme = useTheme()
   return (
-    <RNPAppbar.Header mode="center-aligned">
+    <RNPAppbar.Header
+      mode="center-aligned"
+      style={{ backgroundColor: theme.colors.elevation.level2 }}
+    >
       {screenMode === "Stack" ? (
         <RNPAppbar.BackAction
           onPress={
