@@ -1,6 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 import { Meta, StoryObj } from "@storybook/react-native"
-import { View } from "react-native"
+import { View } from "../StoryHelpers"
 import { TextInput } from "./"
 
 const meta = {
@@ -8,13 +7,7 @@ const meta = {
   component: TextInput,
   decorators: [
     (Story) => (
-      <View
-        style={{
-          margin: 20,
-          justifyContent: "center",
-          flex: 1,
-        }}
-      >
+      <View>
         <Story />
       </View>
     ),
