@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack"
 import { useEffect } from "react"
-import { Appbar } from "../components/AppBar"
+import { Appbar } from "../components"
 import { setupApplication } from "../utils/setup"
 import { AddTransactionScreen } from "./AddTransactionScreen"
 import { DrawerNavigator } from "./components/DrawerNavigator"

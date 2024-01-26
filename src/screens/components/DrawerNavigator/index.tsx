@@ -1,5 +1,5 @@
 import { createDrawerNavigator } from "@react-navigation/drawer"
-import { Appbar } from "../../../components/AppBar"
+import { Appbar } from "../../../components"
 import { HelpAndSupportScreen } from "../../HelpAndSupportScreen"
 import { ProfileScreen } from "../../ProfileScreen"
 import { SecurityScreen } from "../../SecurityScreen"
