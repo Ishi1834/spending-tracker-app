@@ -5,6 +5,9 @@ export type ViewProps = {
   children: React.ReactNode
 }
 
+/**
+ * A View component with margin, padding and react-native-paper's theme applied.
+ */
 export const View = ({ children }: ViewProps) => {
   const theme = useTheme()
   return (
