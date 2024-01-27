@@ -2,13 +2,20 @@ import { useState, useEffect } from "react"
 import { StyleSheet } from "react-native"
 import { Divider } from "react-native-paper"
 import { View, Text, SwitchInput } from "../../components"
-import { isAuthRequired, toggleAuthRequired } from "../../utils/auth"
+import { getIsAuthRequired, toggleAuthRequired } from "../../utils/auth"
+import { getUserProfile, updateUserProfile } from "../../utils/userProfile"
 
 export const SettingsScreen = () => {
   const [isAuthEnabled, setIsAuthEnabled] = useState(false)
+  const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(false)
+  const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(false)
 
   useEffect(() => {
-    isAuthRequired().then((val) => setIsAuthEnabled(val))
+    getIsAuthRequired().then((val) => setIsAuthEnabled(val))
+    getUserProfile().then((userProfile) => {
+      setIsDarkModeEnabled(userProfile.isDarkModeEnabled)
+      setIsNotificationsEnabled(userProfile.isNotificationsEnabled)
+    })
   }, [])
 
   return (
@@ -28,14 +35,32 @@ export const SettingsScreen = () => {
       </View>
       <Divider style={styles.divider} />
       <View styleExtension={styles.groupWrapper}>
-        <Text variant="titleMedium">Permissions</Text>
+        <Text variant="titleMedium">Preferences</Text>
         <View styleExtension={styles.inputWrapper}>
           <SwitchInput
             icon="bell"
             label="Allow notifications"
-            isSwitchOn={false}
+            isSwitchOn={isNotificationsEnabled}
             onSwitchToggle={() =>
-              console.log("Allow notifications switch toggled")
+              updateUserProfile({
+                isNotificationsEnabled: !isNotificationsEnabled,
+              }).then((userProfile) =>
+                setIsNotificationsEnabled(userProfile.isNotificationsEnabled),
+              )
+            }
+          />
+        </View>
+        <View styleExtension={styles.inputWrapper}>
+          <SwitchInput
+            icon="theme-light-dark"
+            label="Toggle dark mode"
+            isSwitchOn={isDarkModeEnabled}
+            onSwitchToggle={() =>
+              updateUserProfile({
+                isDarkModeEnabled: !isDarkModeEnabled,
+              }).then((userProfile) =>
+                setIsDarkModeEnabled(userProfile.isDarkModeEnabled),
+              )
             }
           />
         </View>
@@ -53,7 +78,7 @@ const styles = StyleSheet.create({
   inputWrapper: {
     marginHorizontal: 0,
     marginVertical: 0,
-    marginTop: 5,
+    marginTop: 8,
     flex: 0,
   },
   divider: {
