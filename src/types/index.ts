@@ -9,9 +9,14 @@ interface AppSettings {
   isAuthRequired: boolean
 }
 
+type AppPreferences = Pick<
+  AppSettings,
+  "isDarkModeEnabled" | "isNotificationsEnabled"
+>
+
 interface AppState extends AppSettings {
   isLoading: boolean
   isAuthenticated: boolean
 }
 
-export type { UserProfile, AppSettings, AppState }
+export type { UserProfile, AppSettings, AppState, AppPreferences }

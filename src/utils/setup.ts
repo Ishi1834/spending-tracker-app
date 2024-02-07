@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
 import * as LocalAuthentication from "expo-local-authentication"
 import * as SecureStore from "expo-secure-store"
-import { UserProfile } from "../types"
+import { UserProfile, AppPreferences } from "../types"
 import { setupDatabaseTables } from "./database"
 
 const setupSecureStore = async () => {
@@ -20,6 +20,15 @@ const setupAsyncStorage = async () => {
       savingGoalTargetDate: null,
     }
     await AsyncStorage.setItem("userProfile", JSON.stringify(userProfile))
+  }
+  // app preferences
+  const appPreferences = await AsyncStorage.getItem("appPreferences")
+  if (appPreferences === null) {
+    const appPreferences: AppPreferences = {
+      isDarkModeEnabled: false,
+      isNotificationsEnabled: true,
+    }
+    await AsyncStorage.setItem("appPreferences", JSON.stringify(appPreferences))
   }
 }
 

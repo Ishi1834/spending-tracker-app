@@ -1,23 +1,18 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import { AppSettings } from "../types"
+import { AppSettings, AppPreferences } from "../types"
 import { getIsAuthRequired } from "./auth"
-
-type AsyncStorageSetting = Pick<
-  AppSettings,
-  "isDarkModeEnabled" | "isNotificationsEnabled"
->
 
 /**
  * A function to get the app settings from expo-secure-store and async-storage
  * @returns Promise that contains isDarkModeEnabled, isNotificationsEnabled and isAuthRequired
  */
 const getAppSettings = async (): Promise<AppSettings> => {
-  const appSettings = await AsyncStorage.getItem("appSettings")
+  const appPreferences = await AsyncStorage.getItem("appPreferences")
 
   const isAuthRequired = await getIsAuthRequired()
 
   return {
-    ...(JSON.parse(appSettings || "{}") as AsyncStorageSetting),
+    ...(JSON.parse(appPreferences || "{}") as AppPreferences),
     isAuthRequired,
   }
 }
@@ -27,18 +22,21 @@ const getAppSettings = async (): Promise<AppSettings> => {
  * @returns Promise containing isNotificationEnabled
  */
 const toggleNotificationSetting = async () => {
-  const existingAppSettings = JSON.parse(
-    (await AsyncStorage.getItem("appSettings")) || "{}",
-  ) as AsyncStorageSetting
+  const appPreferences = JSON.parse(
+    (await AsyncStorage.getItem("appPreferences")) || "{}",
+  ) as AppPreferences
 
-  const isNotificationsEnabled = existingAppSettings.isNotificationsEnabled
+  const isNotificationsEnabled = appPreferences.isNotificationsEnabled
 
-  const updatedAppSettings: AsyncStorageSetting = {
-    ...existingAppSettings,
+  const updatedAppPreferences: AppPreferences = {
+    ...appPreferences,
     isNotificationsEnabled: !isNotificationsEnabled,
   }
 
-  await AsyncStorage.setItem("appSettings", JSON.stringify(updatedAppSettings))
+  await AsyncStorage.setItem(
+    "appPreferences",
+    JSON.stringify(updatedAppPreferences),
+  )
 
   return !isNotificationsEnabled
 }
@@ -48,18 +46,21 @@ const toggleNotificationSetting = async () => {
  * @returns Promise containing isDarkModeEnabled
  */
 const toggleDarkModeSetting = async () => {
-  const existingAppSettings = JSON.parse(
-    (await AsyncStorage.getItem("appSettings")) || "{}",
-  ) as AsyncStorageSetting
+  const existingAppPreferences = JSON.parse(
+    (await AsyncStorage.getItem("appPreferences")) || "{}",
+  ) as AppPreferences
 
-  const isDarkModeEnabled = existingAppSettings.isDarkModeEnabled
+  const isDarkModeEnabled = existingAppPreferences.isDarkModeEnabled
 
-  const updatedAppSettings: AsyncStorageSetting = {
-    ...existingAppSettings,
+  const updatedAppPreferences: AppPreferences = {
+    ...existingAppPreferences,
     isDarkModeEnabled: !isDarkModeEnabled,
   }
 
-  await AsyncStorage.setItem("appSettings", JSON.stringify(updatedAppSettings))
+  await AsyncStorage.setItem(
+    "appPreferences",
+    JSON.stringify(updatedAppPreferences),
+  )
 
   return !isDarkModeEnabled
 }
