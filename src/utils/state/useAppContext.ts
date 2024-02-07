@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react"
 import { AppState } from "../../types"
-import { getAppSettings } from "../appSettings"
+import {
+  getAppSettings,
+  toggleDarkModeSetting,
+  toggleNotificationSetting,
+} from "../appSettings"
+import { toggleAuthRequired } from "../auth"
+import { AppContext } from "./appContext"
 
 const defaultAppState: AppState = {
   isLoading: true,
@@ -10,7 +16,7 @@ const defaultAppState: AppState = {
   isNotificationsEnabled: false,
 }
 
-export const useAppContext = () => {
+export const useAppContext = (): AppContext => {
   const [appState, setAppState] = useState(defaultAppState)
 
   useEffect(() => {
@@ -22,14 +28,30 @@ export const useAppContext = () => {
     })
   }, [])
 
-  const updateAppState = (args: Partial<AppState>) => {
-    console.log("update these args", args)
+  const toggleAuth = () => {
+    toggleAuthRequired().then((isAuthRequired) =>
+      setAppState({ ...appState, isAuthRequired }),
+    )
   }
 
-  console.log("app state", appState)
+  const toggleNotifications = () => {
+    toggleNotificationSetting().then((isNotificationsEnabled) =>
+      setAppState({ ...appState, isNotificationsEnabled }),
+    )
+  }
+
+  const toggleDarkMode = () => {
+    toggleDarkModeSetting().then((isDarkModeEnabled) =>
+      setAppState({ ...appState, isDarkModeEnabled }),
+    )
+  }
 
   return {
     appState,
-    updateAppState,
+    updateAppState: {
+      toggleAuth,
+      toggleNotifications,
+      toggleDarkMode,
+    },
   }
 }

@@ -1,9 +1,13 @@
 import { createContext } from "react"
 import { AppState } from "../../types"
 
-interface AppContextType {
+export interface AppContext {
   appState: AppState
-  updateAppState: (args: Partial<AppState>) => void
+  updateAppState: {
+    toggleAuth: () => void
+    toggleNotifications: () => void
+    toggleDarkMode: () => void
+  }
 }
 
-export const AppContext = createContext({} as AppContextType)
+export const AppContext = createContext({} as AppContext)
