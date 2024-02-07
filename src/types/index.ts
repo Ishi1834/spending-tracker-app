@@ -1,8 +1,17 @@
 interface UserProfile {
   savingGoalAmount: number | null
   savingGoalTargetDate: Date | null
-  isDarkModeEnabled: boolean
-  isNotificationsEnabled: boolean
 }
 
-export type { UserProfile }
+interface AppSettings {
+  isDarkModeEnabled: boolean
+  isNotificationsEnabled: boolean
+  isAuthRequired: boolean
+}
+
+interface AppState extends AppSettings {
+  isLoading: boolean
+  isAuthenticated: boolean
+}
+
+export type { UserProfile, AppSettings, AppState }

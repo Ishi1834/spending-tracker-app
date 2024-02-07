@@ -10,6 +10,7 @@ import { PaperProvider, adaptNavigationTheme } from "react-native-paper"
 import { MD3DarkTheme, MD3LightTheme } from "react-native-paper"
 import Storybook from "./.storybook"
 import Main from "./src/screens"
+import { AppContext, useAppContext } from "./src/utils"
 
 const { LightTheme, DarkTheme } = adaptNavigationTheme({
   reactNavigationLight: NavigationDefaultTheme,
@@ -20,18 +21,26 @@ const CombinedDefaultTheme = merge(MD3LightTheme, LightTheme)
 const CombinedDarkTheme = merge(MD3DarkTheme, DarkTheme)
 
 const App = () => {
-  const isDarkTheme = false
+  const { appState, updateAppState } = useAppContext()
 
   return (
-    <PaperProvider
-      theme={isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme}
-    >
-      <NavigationContainer
-        theme={isDarkTheme ? CombinedDarkTheme : CombinedDefaultTheme}
+    <AppContext.Provider value={{ appState, updateAppState }}>
+      <PaperProvider
+        theme={
+          appState.isDarkModeEnabled ? CombinedDarkTheme : CombinedDefaultTheme
+        }
       >
-        <Main />
-      </NavigationContainer>
-    </PaperProvider>
+        <NavigationContainer
+          theme={
+            appState.isDarkModeEnabled
+              ? CombinedDarkTheme
+              : CombinedDefaultTheme
+          }
+        >
+          <Main />
+        </NavigationContainer>
+      </PaperProvider>
+    </AppContext.Provider>
   )
 }
 
