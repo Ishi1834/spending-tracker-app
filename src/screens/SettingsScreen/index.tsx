@@ -1,22 +1,14 @@
-import { useState, useEffect } from "react"
+import { useContext } from "react"
 import { StyleSheet } from "react-native"
 import { Divider } from "react-native-paper"
 import { View, Text, SwitchInput } from "../../components"
-import { getIsAuthRequired, toggleAuthRequired } from "../../utils/auth"
-import { getUserProfile, updateUserProfile } from "../../utils/userProfile"
+import { AppContext } from "../../utils"
 
 export const SettingsScreen = () => {
-  const [isAuthEnabled, setIsAuthEnabled] = useState(false)
-  const [isDarkModeEnabled, setIsDarkModeEnabled] = useState(false)
-  const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(false)
-
-  useEffect(() => {
-    getIsAuthRequired().then((val) => setIsAuthEnabled(val))
-    getUserProfile().then((userProfile) => {
-      setIsDarkModeEnabled(userProfile.isDarkModeEnabled)
-      setIsNotificationsEnabled(userProfile.isNotificationsEnabled)
-    })
-  }, [])
+  const {
+    appState,
+    updateAppState: { toggleAuth, toggleDarkMode, toggleNotifications },
+  } = useContext(AppContext)
 
   return (
     <View>
@@ -26,10 +18,8 @@ export const SettingsScreen = () => {
           <SwitchInput
             icon="lock"
             label="Enable device authentication"
-            isSwitchOn={isAuthEnabled}
-            onSwitchToggle={() =>
-              toggleAuthRequired().then((val) => setIsAuthEnabled(val))
-            }
+            isSwitchOn={appState.isAuthRequired}
+            onSwitchToggle={toggleAuth}
           />
         </View>
       </View>
@@ -40,28 +30,16 @@ export const SettingsScreen = () => {
           <SwitchInput
             icon="bell"
             label="Allow notifications"
-            isSwitchOn={isNotificationsEnabled}
-            onSwitchToggle={() =>
-              updateUserProfile({
-                isNotificationsEnabled: !isNotificationsEnabled,
-              }).then((userProfile) =>
-                setIsNotificationsEnabled(userProfile.isNotificationsEnabled),
-              )
-            }
+            isSwitchOn={appState.isNotificationsEnabled}
+            onSwitchToggle={toggleNotifications}
           />
         </View>
         <View styleExtension={styles.inputWrapper}>
           <SwitchInput
             icon="theme-light-dark"
             label="Toggle dark mode"
-            isSwitchOn={isDarkModeEnabled}
-            onSwitchToggle={() =>
-              updateUserProfile({
-                isDarkModeEnabled: !isDarkModeEnabled,
-              }).then((userProfile) =>
-                setIsDarkModeEnabled(userProfile.isDarkModeEnabled),
-              )
-            }
+            isSwitchOn={appState.isDarkModeEnabled}
+            onSwitchToggle={toggleDarkMode}
           />
         </View>
       </View>
