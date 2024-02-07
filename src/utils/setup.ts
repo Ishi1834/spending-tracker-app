@@ -12,17 +12,14 @@ const setupSecureStore = async () => {
 }
 
 const setupAsyncStorage = async () => {
+  // user profile
   const userProfile = await AsyncStorage.getItem("userProfile")
   if (userProfile === null) {
-    await AsyncStorage.setItem(
-      "userProfile",
-      JSON.stringify({
-        savingGoalAmount: null,
-        savingGoalTargetDate: null,
-        isDarkModeEnabled: false,
-        isNotificationsEnabled: false,
-      } as UserProfile),
-    )
+    const userProfile: UserProfile = {
+      savingGoalAmount: null,
+      savingGoalTargetDate: null,
+    }
+    await AsyncStorage.setItem("userProfile", JSON.stringify(userProfile))
   }
 }
 
