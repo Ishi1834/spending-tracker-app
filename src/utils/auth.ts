@@ -1,3 +1,4 @@
+import * as LocalAuthentication from "expo-local-authentication"
 import * as SecureStore from "expo-secure-store"
 
 /**
@@ -25,4 +26,17 @@ const toggleAuthRequired = async () => {
   }
 }
 
-export { getIsAuthRequired, toggleAuthRequired }
+/**
+ * A function to authenticate locally
+ */
+const authenticate = async () => {
+  LocalAuthentication.authenticateAsync({
+    promptMessage: "Authenticate",
+    fallbackLabel: "Use Backup",
+  }).then((result) => {
+    // handle authentication result here
+    console.log("auth result", result)
+  })
+}
+
+export { getIsAuthRequired, toggleAuthRequired, authenticate }
