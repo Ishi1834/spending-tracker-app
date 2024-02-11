@@ -30,13 +30,10 @@ const toggleAuthRequired = async () => {
  * A function to authenticate locally
  */
 const authenticate = async () => {
-  LocalAuthentication.authenticateAsync({
-    promptMessage: "Authenticate",
-    fallbackLabel: "Use Backup",
-  }).then((result) => {
-    // handle authentication result here
-    console.log("auth result", result)
+  const result = await LocalAuthentication.authenticateAsync({
+    promptMessage: "Authenticate using your device credentials",
   })
+  return result
 }
 
 export { getIsAuthRequired, toggleAuthRequired, authenticate }
