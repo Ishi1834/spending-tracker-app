@@ -28,6 +28,10 @@ export const useAppContext = (): AppContext => {
     })
   }, [])
 
+  const loginUser = () => {
+    setAppState({ ...appState, isAuthenticated: true })
+  }
+
   const toggleAuth = () => {
     toggleAuthRequired().then((isAuthRequired) =>
       setAppState({ ...appState, isAuthRequired }),
@@ -49,6 +53,7 @@ export const useAppContext = (): AppContext => {
   return {
     appState,
     updateAppState: {
+      loginUser,
       toggleAuth,
       toggleNotifications,
       toggleDarkMode,
