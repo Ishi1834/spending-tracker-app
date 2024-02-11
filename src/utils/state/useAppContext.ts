@@ -24,6 +24,7 @@ export const useAppContext = (): AppContext => {
       setAppState({
         ...appState,
         ...appSettings,
+        isLoading: false,
       })
     })
   }, [])

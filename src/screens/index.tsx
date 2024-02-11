@@ -1,4 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack"
+import * as SplashScreen from "expo-splash-screen"
 import { useContext, useEffect } from "react"
 import { Appbar } from "../components"
 import { AppContext } from "../utils"
@@ -7,6 +8,9 @@ import { AddTransactionScreen } from "./AddTransactionScreen"
 import { DrawerNavigator } from "./components/DrawerNavigator"
 import { SignInScreen } from "./SingInScreen"
 
+// Keep the splash screen while app state is being setup
+SplashScreen.preventAutoHideAsync()
+
 const Stack = createStackNavigator()
 
 const Main = () => {
@@ -14,8 +18,17 @@ const Main = () => {
 
   useEffect(() => {
     setupApplication()
-    // loading state isn't set, but we will need to set it if loading takes longer due api requests
   }, [])
+
+  useEffect(() => {
+    if (appState.isLoading) {
+      // We hide the splash screen once the state is ready
+      const hideSplashScreen = async () => await SplashScreen.hideAsync()
+      hideSplashScreen()
+    }
+  }, [appState.isLoading])
+
+  if (appState.isLoading) return null
 
   return (
     <Stack.Navigator>
