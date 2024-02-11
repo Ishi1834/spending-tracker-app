@@ -2,9 +2,13 @@ import { Text as RNText } from "react-native-paper"
 
 export type TextProps = Pick<
   React.ComponentProps<typeof RNText>,
-  "variant" | "children"
+  "variant" | "children" | "style"
 >
 
-export const Text = ({ variant, children }: TextProps) => {
-  return <RNText variant={variant}>{children}</RNText>
+export const Text = ({ variant, children, style }: TextProps) => {
+  return (
+    <RNText style={style} variant={variant}>
+      {children}
+    </RNText>
+  )
 }
