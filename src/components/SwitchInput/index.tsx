@@ -19,8 +19,12 @@ export const SwitchInput = ({
 }: SwitchInputProps) => {
   return (
     <View style={styles.container}>
-      <Icon source={icon} size={20} />
-      <Text variant="labelLarge">{label}</Text>
+      <View style={styles.startContent}>
+        <Icon source={icon} size={20} />
+        <Text style={styles.text} variant="labelLarge">
+          {label}
+        </Text>
+      </View>
       <Switch value={isSwitchOn} onValueChange={onSwitchToggle} />
     </View>
   )
@@ -28,6 +32,7 @@ export const SwitchInput = ({
 
 const styles = StyleSheet.create({
   container: {
+    height: 30,
     width: "100%",
     flexDirection: "row",
     // vertically center items
@@ -35,5 +40,11 @@ const styles = StyleSheet.create({
     // space items evenly
     justifyContent: "space-between",
     marginTop: 10,
+  },
+  startContent: {
+    flexDirection: "row",
+  },
+  text: {
+    marginLeft: 20,
   },
 })
