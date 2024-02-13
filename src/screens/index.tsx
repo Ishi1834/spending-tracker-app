@@ -8,9 +8,6 @@ import { AddTransactionScreen } from "./AddTransactionScreen"
 import { DrawerNavigator } from "./components/DrawerNavigator"
 import { SignInScreen } from "./SingInScreen"
 
-// Keep the splash screen while app state is being setup
-SplashScreen.preventAutoHideAsync()
-
 const Stack = createStackNavigator()
 
 const Main = () => {

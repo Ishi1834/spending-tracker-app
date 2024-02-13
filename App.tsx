@@ -6,11 +6,17 @@ import {
 } from "@react-navigation/native"
 import merge from "deepmerge"
 import Constants from "expo-constants"
+import * as SplashScreen from "expo-splash-screen"
 import { PaperProvider, adaptNavigationTheme } from "react-native-paper"
 import { MD3DarkTheme, MD3LightTheme } from "react-native-paper"
 import Storybook from "./.storybook"
 import Main from "./src/screens"
 import { AppContext, useAppContext } from "./src/utils"
+
+const isStorybookMode = Constants.expoConfig?.extra?.storybookEnabled
+
+/* Keep the splash screen while app state is being setup, unless in storybook mode */
+!isStorybookMode && SplashScreen.preventAutoHideAsync()
 
 const { LightTheme, DarkTheme } = adaptNavigationTheme({
   reactNavigationLight: NavigationDefaultTheme,
@@ -44,4 +50,4 @@ const App = () => {
   )
 }
 
-export default Constants.expoConfig?.extra?.storybookEnabled ? Storybook : App
+export default isStorybookMode ? Storybook : App
