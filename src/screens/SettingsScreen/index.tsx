@@ -1,7 +1,12 @@
 import { useContext } from "react"
 import { StyleSheet } from "react-native"
-import { Divider } from "react-native-paper"
-import { View, Text, SwitchInput } from "../../components"
+import {
+  View,
+  Text,
+  SwitchInput,
+  Divider,
+  ScreenWrapper,
+} from "../../components"
 import { AppContext } from "../../utils"
 
 export const SettingsScreen = () => {
@@ -11,8 +16,8 @@ export const SettingsScreen = () => {
   } = useContext(AppContext)
 
   return (
-    <View>
-      <View styleExtension={styles.groupWrapper}>
+    <ScreenWrapper>
+      <View>
         <Text variant="titleMedium">Security</Text>
         <View styleExtension={styles.inputWrapper}>
           <SwitchInput
@@ -24,7 +29,7 @@ export const SettingsScreen = () => {
         </View>
       </View>
       <Divider style={styles.divider} />
-      <View styleExtension={styles.groupWrapper}>
+      <View>
         <Text variant="titleMedium">Preferences</Text>
         <View styleExtension={styles.inputWrapper}>
           <SwitchInput
@@ -43,21 +48,13 @@ export const SettingsScreen = () => {
           />
         </View>
       </View>
-    </View>
+    </ScreenWrapper>
   )
 }
 
 const styles = StyleSheet.create({
-  groupWrapper: {
-    marginHorizontal: 0,
-    flex: 0,
-    marginVertical: 0,
-  },
   inputWrapper: {
-    marginHorizontal: 0,
-    marginVertical: 0,
     marginTop: 8,
-    flex: 0,
   },
   divider: {
     marginVertical: 15,

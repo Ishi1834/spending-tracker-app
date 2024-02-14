@@ -2,7 +2,7 @@
 import { useContext, useState } from "react"
 import { StyleSheet, Image } from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
-import { View, Text, Button, Snackbar } from "../../components"
+import { Text, Button, Snackbar, ScreenWrapper } from "../../components"
 import { AppContext } from "../../utils"
 import { authenticate } from "../../utils/auth"
 
@@ -10,7 +10,7 @@ export const SignInScreen = () => {
   const [isLoading, setisLoading] = useState(false)
   const [isShowingError, setIsShowingError] = useState(false)
   const { updateAppState } = useContext(AppContext)
-  const { top, right, left } = useSafeAreaInsets()
+  const { top, right, left, bottom } = useSafeAreaInsets()
 
   const authenticateUser = async () => {
     setisLoading(true)
@@ -27,11 +27,12 @@ export const SignInScreen = () => {
   }
 
   return (
-    <View
+    <ScreenWrapper
       styleExtension={{
         marginTop: top,
         marginLeft: left,
         marginRight: right,
+        marginBottom: bottom,
         ...styles.container,
       }}
     >
@@ -42,7 +43,6 @@ export const SignInScreen = () => {
         Start tracking your expenses and saving money today!
       </Text>
       <Image
-        // does this image work with dark mode?
         source={require("../../../assets/adaptive-icon.png")}
         style={styles.image}
       />
@@ -61,7 +61,7 @@ export const SignInScreen = () => {
         Login failed. You must authenticate to access this app. Once logged in,
         you can disable authentication.
       </Snackbar>
-    </View>
+    </ScreenWrapper>
   )
 }
 
@@ -69,8 +69,6 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 0,
-    marginHorizontal: 0,
   },
   text: {
     textAlign: "center",
