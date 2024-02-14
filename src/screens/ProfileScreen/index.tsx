@@ -1,12 +1,11 @@
-import { StatusBar } from "expo-status-bar"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet } from "react-native"
+import { ScreenWrapper, Text } from "../../components/"
 
 export const ProfileScreen = () => {
   return (
-    <View style={styles.container}>
+    <ScreenWrapper styleExtension={styles.container}>
       <Text>Profile screen</Text>
-      <StatusBar style="auto" />
-    </View>
+    </ScreenWrapper>
   )
 }
 
