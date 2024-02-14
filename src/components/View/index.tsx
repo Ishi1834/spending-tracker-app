@@ -9,10 +9,29 @@ export type ViewProps = {
 }
 
 /**
- * A View component with margin, padding and react-native-paper's theme applied.
+ * A View component with react-native-paper's theme applied.
  */
 export const View = ({ children, styleExtension }: ViewProps) => {
   const theme = useTheme()
+
+  return (
+    <RNView
+      style={{
+        backgroundColor: theme.colors.background,
+        ...styleExtension,
+      }}
+    >
+      {children}
+    </RNView>
+  )
+}
+
+/**
+ * A View component to be used as a screen wrapper with default styles and react-native-paper's theme applied.
+ */
+export const ScreenWrapper = ({ children, styleExtension }: ViewProps) => {
+  const theme = useTheme()
+
   return (
     <RNView
       style={{
