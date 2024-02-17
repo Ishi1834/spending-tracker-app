@@ -1,4 +1,5 @@
 import * as SQLite from "expo-sqlite"
+import { Category } from "../../../types"
 import { db } from "../db"
 
 const defaultCategories = [
@@ -34,11 +35,6 @@ const setupCategoriesTable = () => {
       }
     })
   })
-}
-
-type Category = {
-  category_id: number
-  category_name: string
 }
 
 /**

@@ -3,6 +3,7 @@ interface UserProfile {
   savingGoalTargetDate: Date | null
 }
 
+// state
 interface AppSettings {
   isDarkModeEnabled: boolean
   isNotificationsEnabled: boolean
@@ -19,4 +20,10 @@ interface AppState extends AppSettings {
   isAuthenticated: boolean
 }
 
-export type { UserProfile, AppSettings, AppState, AppPreferences }
+// database
+type Category = {
+  category_id: number
+  category_name: string
+}
+
+export type { UserProfile, AppSettings, AppState, AppPreferences, Category }
