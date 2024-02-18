@@ -6,5 +6,8 @@ export { SwitchInput } from "./SwitchInput"
 export { Button } from "./Button"
 export { Snackbar } from "./Snackbar"
 
-// export that don't require an changes
+// export that don't require any changes
 export { Divider } from "react-native-paper"
+
+// export not from react-native-paper
+export { Picker } from "./Picker"
