@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { StyleSheet } from "react-native"
-import { ScreenWrapper, Text, Picker } from "../../components/"
+import { StyleSheet, Image } from "react-native"
+import { ScreenWrapper, Picker, TextInput } from "../../components/"
 import { Category } from "../../types"
 import { getCategories } from "../../utils/database"
 
@@ -19,27 +19,40 @@ export const AddTransactionScreen = () => {
 
   return (
     <ScreenWrapper styleExtension={styles.container}>
-      <Text>Add transaction screen</Text>
-      <Picker
+      <Image
+        source={require("../../../assets/adaptive-icon.png")}
+        style={styles.image}
+      />
+      <Picker<Category>
         open={isCategoriesPickerOpen}
         setOpen={setIsCategoriesPickerOpen}
-        items={categories.map((category) => ({
-          label: category.category_name,
-          value: category.category_id,
-        }))}
+        schema={{
+          label: "category_name",
+          value: "category_id",
+        }}
+        items={categories}
         value={selectedCategory}
         setValue={setSelectedCategory}
         multiple={false}
+        placeholder="Select a category"
       />
+      <TextInput style={styles.input} mode="outlined" label="Description" />
     </ScreenWrapper>
   )
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    height: "100%",
+    width: "100%",
+  },
+  input: {
+    marginTop: 20,
+    width: "100%",
+  },
+  image: {
+    width: 250,
+    height: 250,
   },
 })

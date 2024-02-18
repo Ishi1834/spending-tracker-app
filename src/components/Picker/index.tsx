@@ -1,9 +1,11 @@
 import DropDownPicker from "react-native-dropdown-picker"
 import { useTheme, Icon } from "react-native-paper"
 
-export type PickerProps = React.ComponentProps<typeof DropDownPicker>
+export type PickerProps<T> = React.ComponentProps<typeof DropDownPicker> & {
+  items: T[]
+}
 
-export const Picker = ({ ...props }: PickerProps) => {
+export const Picker = <T,>({ ...props }: PickerProps<T>) => {
   const theme = useTheme()
   return (
     <DropDownPicker
