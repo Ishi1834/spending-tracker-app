@@ -25,9 +25,6 @@ export const Picker = ({ ...props }: PickerProps) => {
         backgroundColor: theme.colors.surfaceDisabled, // background color when disabled
         borderColor: theme.colors.onSurfaceDisabled, // border color when disabled
       }}
-      containerStyle={{
-        borderColor: theme.colors.primary,
-      }}
       dropDownContainerStyle={{
         backgroundColor: theme.colors.surface, // background color of the dropdown container
         borderColor: theme.colors.primary, // border color of the dropdown container
