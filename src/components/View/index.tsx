@@ -48,7 +48,7 @@ export const ScreenWrapper = ({ children, styleExtension }: ViewProps) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginHorizontal: 20,
-    marginVertical: 15,
+    paddingHorizontal: 20,
+    paddingVertical: 15,
   },
 })
