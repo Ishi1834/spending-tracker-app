@@ -11,3 +11,4 @@ export { Divider } from "react-native-paper"
 
 // export not from react-native-paper
 export { Picker } from "./Picker"
+export { DatePicker } from "./DatePicker"
