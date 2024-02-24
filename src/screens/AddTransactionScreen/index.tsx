@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react"
 import { StyleSheet, Image } from "react-native"
-import { ScreenWrapper, Picker, TextInput } from "../../components/"
+import {
+  ScreenWrapper,
+  Picker,
+  TextInput,
+  DatePicker,
+  RadioButton,
+  View,
+  Button,
+} from "../../components/"
 import { Category } from "../../types"
 import { getCategories } from "../../utils/database"
 
@@ -37,6 +45,30 @@ export const AddTransactionScreen = () => {
         placeholder="Select a category"
       />
       <TextInput style={styles.input} mode="outlined" label="Description" />
+      <TextInput style={styles.input} mode="outlined" label="Amount" />
+      <DatePicker
+        label="Transaction Date"
+        mode="outlined"
+        value={undefined}
+        onChange={(val) => console.log(val)}
+        inputMode="start"
+        withDateFormatInLabel={false}
+        style={styles.input}
+      />
+      <View styleExtension={styles.radioGroupWrapper}>
+        <RadioButton.Group
+          onValueChange={(val) => console.log(val)}
+          value="expense"
+        >
+          <View styleExtension={styles.radioGroup}>
+            <RadioButton.Item label="Expense" value="expense" />
+            <RadioButton.Item label="Income" value="income" />
+          </View>
+        </RadioButton.Group>
+      </View>
+      <Button mode="contained" style={styles.button}>
+        Save Transaction
+      </Button>
     </ScreenWrapper>
   )
 }
@@ -47,12 +79,24 @@ const styles = StyleSheet.create({
     height: "100%",
     width: "100%",
   },
+  image: {
+    width: 250,
+    height: 250,
+  },
   input: {
     marginTop: 20,
     width: "100%",
   },
-  image: {
-    width: 250,
-    height: 250,
+  radioGroupWrapper: {
+    marginTop: 20,
+    width: "100%",
+  },
+  radioGroup: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
+  button: {
+    marginTop: 40,
+    width: "100%",
   },
 })
