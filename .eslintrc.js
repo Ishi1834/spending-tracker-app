@@ -32,7 +32,6 @@ module.exports = {
     "prettier/prettier": "error",
     "react-native/no-unused-styles": 2,
     "react-native/no-inline-styles": 1,
-    "react-native/no-raw-text": 2,
     "react-native/no-single-element-style-arrays": 2,
     "import/order": [
       "error",
