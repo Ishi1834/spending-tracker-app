@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { StyleSheet, Image } from "react-native"
+import { StyleSheet, Image, ScrollView } from "react-native"
 import {
   ScreenWrapper,
   Picker,
@@ -26,50 +26,53 @@ export const AddTransactionScreen = () => {
   }, [])
 
   return (
-    <ScreenWrapper styleExtension={styles.container}>
-      <Image
-        source={require("../../../assets/adaptive-icon.png")}
-        style={styles.image}
-      />
-      <Picker<Category>
-        open={isCategoriesPickerOpen}
-        setOpen={setIsCategoriesPickerOpen}
-        schema={{
-          label: "category_name",
-          value: "category_id",
-        }}
-        items={categories}
-        value={selectedCategory}
-        setValue={setSelectedCategory}
-        multiple={false}
-        placeholder="Select a category"
-      />
-      <TextInput style={styles.input} mode="outlined" label="Description" />
-      <TextInput style={styles.input} mode="outlined" label="Amount" />
-      <DatePicker
-        label="Transaction Date"
-        mode="outlined"
-        value={undefined}
-        onChange={(val) => console.log(val)}
-        inputMode="start"
-        withDateFormatInLabel={false}
-        style={styles.input}
-      />
-      <View styleExtension={styles.radioGroupWrapper}>
-        <RadioButton.Group
-          onValueChange={(val) => console.log(val)}
-          value="expense"
-        >
-          <View styleExtension={styles.radioGroup}>
-            <RadioButton.Item label="Expense" value="expense" />
-            <RadioButton.Item label="Income" value="income" />
-          </View>
-        </RadioButton.Group>
-      </View>
-      <Button mode="contained" style={styles.button}>
-        Save Transaction
-      </Button>
-    </ScreenWrapper>
+    <ScrollView>
+      <ScreenWrapper styleExtension={styles.container}>
+        <Image
+          source={require("../../../assets/adaptive-icon.png")}
+          style={styles.image}
+        />
+        <Picker<Category>
+          open={isCategoriesPickerOpen}
+          setOpen={setIsCategoriesPickerOpen}
+          schema={{
+            label: "category_name",
+            value: "category_id",
+          }}
+          items={categories}
+          value={selectedCategory}
+          setValue={setSelectedCategory}
+          multiple={false}
+          placeholder="Select a category"
+          listMode="SCROLLVIEW"
+        />
+        <TextInput style={styles.input} mode="outlined" label="Description" />
+        <TextInput style={styles.input} mode="outlined" label="Amount" />
+        <DatePicker
+          label="Transaction Date"
+          mode="outlined"
+          value={undefined}
+          onChange={(val) => console.log(val)}
+          inputMode="start"
+          withDateFormatInLabel={false}
+          style={styles.input}
+        />
+        <View styleExtension={styles.radioGroupWrapper}>
+          <RadioButton.Group
+            onValueChange={(val) => console.log(val)}
+            value="expense"
+          >
+            <View styleExtension={styles.radioGroup}>
+              <RadioButton.Item label="Expense" value="expense" />
+              <RadioButton.Item label="Income" value="income" />
+            </View>
+          </RadioButton.Group>
+        </View>
+        <Button mode="contained" style={styles.button}>
+          Save Transaction
+        </Button>
+      </ScreenWrapper>
+    </ScrollView>
   )
 }
 
@@ -78,10 +81,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: "100%",
     width: "100%",
+    marginBottom: 20,
   },
   image: {
     width: 250,
-    height: 250,
+    height: 200,
   },
   input: {
     marginTop: 20,
