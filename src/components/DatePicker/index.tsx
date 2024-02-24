@@ -26,6 +26,6 @@ const styles = StyleSheet.create({
     /**
      * A temporary fix as the DatePickerInput component takes up the entire space available if the below style is not applied.
      */
-    height: 70,
+    height: 80,
   },
 })
