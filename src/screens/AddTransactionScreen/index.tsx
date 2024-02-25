@@ -82,6 +82,7 @@ export const AddTransactionScreen = () => {
                 placeholder="Select a category"
                 listMode="SCROLLVIEW"
                 zIndex={999}
+                error={Boolean(errors.category)}
               />
               <HelperText type="error" visible={Boolean(errors.category)}>
                 {errors.category?.message}
@@ -102,6 +103,7 @@ export const AddTransactionScreen = () => {
                 onChangeText={onChange}
                 value={value}
                 onBlur={onBlur}
+                error={Boolean(errors.description)}
               />
               <HelperText type="error" visible={Boolean(errors.description)}>
                 {errors.description?.message}
@@ -122,6 +124,7 @@ export const AddTransactionScreen = () => {
                 inputMode="numeric"
                 value={value?.toString()}
                 onBlur={onBlur}
+                error={Boolean(errors.amount)}
               />
               <HelperText type="error" visible={Boolean(errors.amount)}>
                 {errors.amount?.message}
@@ -143,6 +146,13 @@ export const AddTransactionScreen = () => {
                 withDateFormatInLabel={false}
                 style={styles.input}
                 onBlur={onBlur}
+                hideValidationErrors={true}
+                placeholder="MM/DD/YYYY"
+                onValidationError={(error) =>
+                  error && control.setError("date", { message: error })
+                }
+                error={Boolean(errors.date)}
+                hasError={Boolean(errors.date)}
               />
               <HelperText type="error" visible={Boolean(errors.date)}>
                 {errors.date?.message}

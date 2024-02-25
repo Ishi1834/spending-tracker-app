@@ -3,15 +3,16 @@ import { useTheme, Icon } from "react-native-paper"
 
 export type PickerProps<T> = React.ComponentProps<typeof DropDownPicker> & {
   items: T[]
+  error?: boolean
 }
 
-export const Picker = <T,>({ ...props }: PickerProps<T>) => {
+export const Picker = <T,>({ error = false, ...props }: PickerProps<T>) => {
   const theme = useTheme()
   return (
     <DropDownPicker
       style={{
         backgroundColor: theme.colors.surface, // background color of the picker
-        borderColor: theme.colors.primary, // border color of the picker
+        borderColor: error ? theme.colors.error : theme.colors.primary, // border color of the picker
       }}
       textStyle={{
         color: props?.disabled
@@ -32,7 +33,7 @@ export const Picker = <T,>({ ...props }: PickerProps<T>) => {
         borderColor: theme.colors.primary, // border color of the dropdown container
       }}
       placeholderStyle={{
-        color: theme.colors.secondary, // color of the placeholder text
+        color: error ? theme.colors.error : theme.colors.secondary, // color of the placeholder text
       }}
       listParentContainerStyle={{
         backgroundColor: theme.colors.surface, // background color of the parent list container
