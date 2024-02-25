@@ -4,7 +4,6 @@ import { StackNavigationProp } from "@react-navigation/stack"
 import { useEffect, useState } from "react"
 import { useForm, Controller } from "react-hook-form"
 import { StyleSheet, Image, ScrollView } from "react-native"
-import * as yup from "yup"
 import {
   ScreenWrapper,
   Picker,
@@ -18,18 +17,7 @@ import {
 } from "../../components/"
 import { Category, TransactionFormData } from "../../types"
 import { getCategories, addTransaction } from "../../utils/database"
-
-const schema = yup.object().shape({
-  category: yup.number().integer().required("Category is required"),
-  description: yup.string().required("Description is required"),
-  amount: yup
-    .number()
-    .typeError("Amount must be a number")
-    .positive("Amount should be greater than 0")
-    .required("Amount is required"),
-  date: yup.date().required("Date is required"),
-  expense: yup.string().oneOf(["True", "False"]).required(), // 0 for expense, 1 for income
-})
+import { transactionSchema } from "../../utils/validation"
 
 type AddTransactionScreenProps = {
   navigation: StackNavigationProp<ParamListBase, "AddATransaction", undefined>
@@ -54,7 +42,7 @@ export const AddTransactionScreen = ({
     handleSubmit,
     formState: { errors },
   } = useForm<TransactionFormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(transactionSchema),
     defaultValues: {
       description: "",
       amount: 0,
