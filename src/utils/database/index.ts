@@ -1,5 +1,9 @@
 import { setupCategoriesTable, getCategories } from "./categories"
-import { setupTransactionsTable } from "./transactions"
+import {
+  setupTransactionsTable,
+  addTransaction,
+  getTransactions,
+} from "./transactions"
 
 // need to use 1(true) or 0(false) for boolean type
 
@@ -8,4 +12,4 @@ const setupDatabaseTables = () => {
   setupTransactionsTable()
 }
 
-export { setupDatabaseTables, getCategories }
+export { setupDatabaseTables, getCategories, addTransaction, getTransactions }

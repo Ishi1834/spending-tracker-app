@@ -26,4 +26,20 @@ type Category = {
   category_name: string
 }
 
-export type { UserProfile, AppSettings, AppState, AppPreferences, Category }
+// Transactions
+type TransactionFormData = {
+  category: number
+  description: string
+  amount: number
+  date: Date
+  expense: "True" | "False"
+}
+
+export type {
+  UserProfile,
+  AppSettings,
+  AppState,
+  AppPreferences,
+  Category,
+  TransactionFormData,
+}
