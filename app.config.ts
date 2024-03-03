@@ -2,6 +2,7 @@ import { ExpoConfig, ConfigContext } from "expo/config"
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
+  privacy: "public",
   name: "spending-tracker-app",
   slug: "spending-tracker-app",
   version: "1.0.0",
