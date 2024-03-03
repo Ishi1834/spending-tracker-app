@@ -22,11 +22,28 @@ This project has been set up with Storybook, a development environment for UI co
 
 `npm run storybook:start`
 
+## Designs
+
+The designs for this project were developed using [uizard](https://uizard.io)
+
+- [Designs overview](https://app.uizard.io/p/8cc9661c/overview)
+- [Application design preview](https://app.uizard.io/p/8cc9661c)
+
 ## Features
+
+> There is an application called [Snoop](https://snoop.app/) that does what I planned to do with this app. As a result, I will be putting the development of this application on hold until I figure out whether there is a market for it.
 
 - Track your expenses and income.
 - Categorize your transactions.
 - Generate reports and visualize your spending habits.
+
+## Project management
+
+> Notion links
+
+- [Why I built this](https://spensaver.notion.site/Spending-tracker-app-e9a869656ee24d84b4022c8307c8fd9c)
+- [App requirements](https://spensaver.notion.site/Requirements-ab3c07d0956946d8af982ae66810c730)
+- [Project board](https://spensaver.notion.site/aed183c4d7264931934af59178c52ff8?v=d49a5e343cdc48a192effecd2d2ca5ce)
 
 ## Contributing
 
