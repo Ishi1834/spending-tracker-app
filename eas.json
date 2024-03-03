@@ -12,7 +12,7 @@
       "distribution": "internal",
       "channel": "staging"
     },
-    "main": {
+    "production": {
       "channel": "main"
     }
   },
